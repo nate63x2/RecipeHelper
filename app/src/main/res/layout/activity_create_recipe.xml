@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@android:style/TextAppearance.Large"
+        android:layout_centerHorizontal="true"
+        android:text="New Recipe Details"
+        android:id="@+id/titleText"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titleText"
+        android:text="Recipe Name:"
+        android:id="@+id/nameText"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nameText"
+        android:inputType="text"
+        android:ems="10"
+        android:id="@+id/nameEditText"
+        style="@android:style/Widget.DeviceDefault.EditText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nameEditText"
+        android:layout_marginTop="8dp"
+        android:text="Estimated Time"
+        android:id="@+id/timeText"/>
+
+    <EditText
+        android:layout_height="wrap_content"
+        android:layout_width="175dp"
+        android:layout_below="@id/timeText"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/timeEditText"
+        style="@android:style/Widget.DeviceDefault.EditText" />
+
+    <Spinner
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/timeEditText"
+        android:layout_alignParentRight="true"
+        android:id="@+id/spinner"
+        android:layout_alignTop="@+id/timeEditText" />
+
+</RelativeLayout>

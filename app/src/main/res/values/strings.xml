@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">RecipeHelper</string>
+    <string name="add_ingredient">Add ingredient to search</string>
+    <string-array name="options">
+        <item>Enter New Recipe</item>
+        <item>Recipe List</item>
+        <item>Favorite Recipes</item>
+    </string-array>
+    <string-array name="timeSpinnerEntries">
+        <item>Minutes</item>
+        <item>Hours</item>
+    </string-array>
+</resources>
