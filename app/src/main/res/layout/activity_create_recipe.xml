@@ -3,53 +3,144 @@
     android:layout_width="match_parent" android:layout_height="match_parent"
     >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="@android:style/TextAppearance.Large"
-        android:layout_centerHorizontal="true"
-        android:text="New Recipe Details"
-        android:id="@+id/titleText"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/titleText"
-        android:text="Recipe Name:"
-        android:id="@+id/nameText"/>
-
-    <EditText
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/nameText"
-        android:inputType="text"
-        android:ems="10"
-        android:id="@+id/nameEditText"
-        style="@android:style/Widget.DeviceDefault.EditText" />
+        >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/nameEditText"
-        android:layout_marginTop="8dp"
-        android:text="Estimated Time"
-        android:id="@+id/timeText"/>
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent" android:layout_height="match_parent"
+            android:id="@+id/newRecipeParts">
 
-    <EditText
-        android:layout_height="wrap_content"
-        android:layout_width="175dp"
-        android:layout_below="@id/timeText"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/timeEditText"
-        style="@android:style/Widget.DeviceDefault.EditText" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@android:style/TextAppearance.Large"
+                android:layout_centerHorizontal="true"
+                android:text="New Recipe Details"
+                android:id="@+id/titleText"/>
 
-    <Spinner
-        android:layout_width="175dp"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/titleText"
+                android:text="Recipe Name:"
+                android:id="@+id/nameText"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/nameText"
+                android:inputType="text"
+                android:ems="10"
+                android:id="@+id/nameEditText"
+                style="@android:style/Widget.DeviceDefault.EditText" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/nameEditText"
+                android:layout_marginTop="8dp"
+                android:text="Estimated Time"
+                android:id="@+id/timeText"/>
+
+            <EditText
+                android:layout_height="wrap_content"
+                android:layout_width="175dp"
+                android:layout_below="@id/timeText"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/timeEditText"
+                style="@android:style/Widget.DeviceDefault.EditText" />
+
+            <Spinner
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/timeEditText"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/timeTypeSpinner"
+                android:layout_alignTop="@+id/timeEditText"
+                android:entries="@array/time_spinner_entries" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/timeTypeSpinner"
+                android:layout_marginTop="8dp"
+                android:text="Add Ingredients"
+                android:id="@+id/ingredientText"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ingredientEditText"
+                android:layout_marginTop="8dp"
+                android:text="Ingredient Note"
+                android:id="@+id/noteText"/>
+
+            <EditText
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ingredientText"
+                android:layout_alignParentStart="true"
+                android:inputType="text"
+                android:ems="10"
+                android:id="@+id/quantityEditText"
+                android:layout_width="120dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/noteText"
+                android:inputType="text"
+                android:ems="10"
+                android:id="@+id/noteEditText"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/noteEditText"
+                android:text="Add Ingredient"
+                android:onClick="onClickAddIngredient"
+                android:id="@+id/addIngredient"/>
+
+            <EditText
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:ems="10"
+                android:id="@+id/ingredientEditText"
+                style="@android:style/Widget.DeviceDefault.EditText"
+                android:layout_below="@+id/ingredientText"
+                android:layout_centerHorizontal="true"
+                android:layout_width="120dp" />
+
+            <Spinner
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:id="@+id/ingredientTypeSpinner"
+                android:layout_width="120dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignTop="@+id/ingredientEditText"
+                android:layout_alignBottom="@+id/ingredientEditText" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <Button
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/timeEditText"
-        android:layout_alignParentRight="true"
-        android:id="@+id/spinner"
-        android:layout_alignTop="@+id/timeEditText" />
+        android:layout_alignParentBottom="true"
+        android:text="Save"
+        android:onClick="onClickSave"
+        android:id="@+id/saveButton"
+        android:layout_width="120dp" />
+
+    <Button
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:text="Cancel"
+        android:onClick="onClickCancel"
+        android:id="@+id/cancelButton"/>
 
 </RelativeLayout>

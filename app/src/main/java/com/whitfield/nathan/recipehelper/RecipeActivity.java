@@ -18,19 +18,20 @@ import android.widget.Toast;
  * Created by Nathan on 11/30/2016.
  */
 
-public class RecipeActivity extends Activity implements RecipeList.RecipeListListener{
+public class RecipeActivity extends Activity implements RecipeSearchCriteria.onSearchClickListener{
 
     //Set database and cursor objets
     private SQLiteDatabase db;
     private Cursor recipeCursor;
     private ListView recipesList;
+    FragmentTransaction ft;
 
     //fill list view with results in the cursor
     CursorAdapter recipeAdapter =
             new SimpleCursorAdapter(RecipeActivity.this,
                     android.R.layout.simple_expandable_list_item_1,
                     recipeCursor,
-                    new String[] {"NAME"},
+                    new String[] {"recipeName"},
                     new int[]{android.R.id.text1}, 0);
 
     public static final String EXTRA_RECIPENUM = "recipeNum";
@@ -42,7 +43,7 @@ public class RecipeActivity extends Activity implements RecipeList.RecipeListLis
 
         //Setup the RecipeList fragment in the frameLayout container
         RecipeList listOfRecipes = new RecipeList();
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.recipe_container, listOfRecipes);
         ft.addToBackStack(null);
         ft.commit();
@@ -93,7 +94,7 @@ public class RecipeActivity extends Activity implements RecipeList.RecipeListLis
     }
 
     @Override
-    public void itemClicked(long id) {
+    public void searchClick(String ingredientType, String[] ingredients) {
 
     }
 }

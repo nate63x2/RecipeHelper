@@ -36,6 +36,7 @@ public class RecipeDatabaseHelper extends SQLiteOpenHelper {
                     + "_recipeId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, "
                     + "recipeName TEXT, "
                     + "recipeTime INTEGER, "
+                    + "recipeTimeType TEXT, "
                     + "favorite INTEGER);");
 
             db.execSQL("CREATE TABLE INGREDIENT ("
@@ -53,14 +54,16 @@ public class RecipeDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    private void insertRecipe(SQLiteDatabase db, String name, int favorite) {
+    public void insertRecipe(SQLiteDatabase db, String name, int time, String timeType, int favorite) {
         ContentValues recipeValues = new ContentValues();
         recipeValues.put("recipeName", name);
+        recipeValues.put("recipeTime", time);
+        recipeValues.put("recipeTimeType", timeType);
         recipeValues.put("favorite", favorite);
         db.insert("RECIPE", null, recipeValues);
     }
 
-    private void insertIngredient(SQLiteDatabase db, String name, String note, String type) {
+    public void insertIngredient(SQLiteDatabase db, String name, String note, String type) {
         ContentValues ingredientValues = new ContentValues();
         ingredientValues.put("ingredientName", name);
         ingredientValues.put("ingredientNote", note);
@@ -68,7 +71,7 @@ public class RecipeDatabaseHelper extends SQLiteOpenHelper {
         db.insert("INGREDIENT", null, ingredientValues);
     }
 
-    private void insertRecipeIngredient(SQLiteDatabase db, String quantity, int recipeID, int ingredientID) {
+    public void insertRecipeIngredient(SQLiteDatabase db, String quantity, int recipeID, int ingredientID) {
         ContentValues recipeIngredientValues = new ContentValues();
         recipeIngredientValues.put("quantity", quantity);
         recipeIngredientValues.put("recipeId", recipeID);

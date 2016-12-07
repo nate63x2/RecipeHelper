@@ -27,11 +27,15 @@ public class RecipeList extends ListFragment {
     private SQLiteDatabase db;
     private Cursor recipeCursor;
 
+    ListView recipesList;
+
+    /*
     static interface RecipeListListener {
         void itemClicked(long id);
     };
 
     private RecipeListListener listener;
+    */
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -39,8 +43,9 @@ public class RecipeList extends ListFragment {
         //set layout
         final View rootView = inflater.inflate(R.layout.fragment_list_recipe, container, false);
         //Create listView object
-        ListView recipesList = (ListView)rootView.findViewById(R.id.list_recipes);
+        recipesList = (ListView)rootView.findViewById(R.id.list_recipes);
 
+        /*
         //Create an OnItemClickLiestener
         AdapterView.OnItemClickListener itemClickListener =
                 new AdapterView.OnItemClickListener() {
@@ -49,19 +54,34 @@ public class RecipeList extends ListFragment {
                     }
                 };
 
+
+        //navigate to RecipeActivity if recipe is clicked
+        recipesList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> listView, View v, int position, long id) {
+                Intent intent = new Intent(getContext(), RecipeDetails.class);
+                intent.putExtra(RecipeDetails.EXTRA_RECIPENUM, (int)id);
+                startActivity(intent);
+            }
+        });
+        */
+        return rootView;
+    }
+
+    public void searchRecipes(){
         //populate recipes from recipeCursor
 
         try {
             SQLiteOpenHelper recipeDatabaseHelper = new RecipeDatabaseHelper(getContext());
             db = recipeDatabaseHelper.getReadableDatabase();
             recipeCursor = db.query("RECIPE",
-                    new String[] {"_recipeId", "NAME"}, "*", null, null, null, null);
+                    new String[] {"_recipeId", "recipeName"}, "*", null, null, null, null);
 
             CursorAdapter recipeAdapter =
                     new SimpleCursorAdapter(getContext(),
                             android.R.layout.simple_expandable_list_item_1,
                             recipeCursor,
-                            new String[] {"NAME"},
+                            new String[] {"recipeName"},
                             new int[]{android.R.id.text1}, 0);
 
             recipesList.setAdapter(recipeAdapter);
@@ -70,19 +90,23 @@ public class RecipeList extends ListFragment {
             Toast toast = Toast.makeText(getContext(), "Database Unavailable" , Toast.LENGTH_SHORT);
             toast.show();
         }
+    }
 
-        //navigate to RecipeActivity if reipe is clicked
-        recipesList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?> listView, View v, int position, long id) {
-                Intent intent = new Intent(getContext(), RecipeActivity.class);
-                intent.putExtra(RecipeActivity.EXTRA_RECIPENUM, (int)id);
-                startActivity(intent);
-            }
-        });
-
-        return rootView;
+    @Override
+    public void onListItemClick(ListView listView,
+                                View itemView,
+                                int position,
+                                long id) {
+        Intent intent = new Intent (getContext(), RecipeDetails.class);
+        intent.putExtra(RecipeDetails.EXTRA_RECIPENUM, (int) id);
+        startActivity(intent);
     }
 
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        recipeCursor.close();
+        db.close();
+    }
 }

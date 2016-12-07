@@ -6,7 +6,7 @@
         <item>Recipe List</item>
         <item>Favorite Recipes</item>
     </string-array>
-    <string-array name="timeSpinnerEntries">
+    <string-array name="time_spinner_entries">
         <item>Minutes</item>
         <item>Hours</item>
     </string-array>

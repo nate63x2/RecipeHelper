@@ -6,21 +6,9 @@
 
     <LinearLayout
         android:orientation="vertical" android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/criteriaLayout"
         >
-
-
-        <TextView
-            android:text="Recipe time in minutes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/timeTextView" />
-
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/timeSpinner" />
 
         <TextView
             android:text="Ingredient Type"
@@ -49,16 +37,25 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/criteriaLayout"
+        android:layout_below="@id/criteriaLayout"
         android:text="+"
+        android:onClick="onClickNewSearchIngredient"
         android:id="@+id/newIngredientButton"/>
+
+    <Button
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:text="Search"
+        android:onClick="onClickSearch"
+        android:id="@+id/apply_search_button"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/add_ingredient"
-        android:layout_alignBottom="@id/criteriaLayout"
-        android:layout_toRightOf="@id/newIngredientButton"
-        android:layout_marginBottom="10dp"
-        android:onClick="onClick"/>
+        android:layout_alignBottom="@id/newIngredientButton"
+        android:layout_toEndOf="@id/newIngredientButton"
+        android:layout_marginBottom="10dp" />
 </RelativeLayout>
